@@ -6,9 +6,12 @@
  */
 
 import React from 'react';
-import {PaperProvider} from 'react-native-paper';
+import {IconButton, PaperProvider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -32,7 +35,7 @@ import {RootStackParamsList} from './types/global';
 import {ArtItem} from './components/ArtItem';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
-import {ArtWork, HomeScreen} from './screens';
+import {ArtWorkScreen, HomeScreen, FavoritesScreen} from './screens';
 import {FavoriteArtWorksProvider} from './components/FavoriteArtWorksProvider';
 
 type SectionProps = PropsWithChildren<{
@@ -137,8 +140,28 @@ function App(): JSX.Element {
         <PaperProvider>
           <NavigationContainer>
             <Stack.Navigator>
-              <Stack.Screen name="Home" component={HomeScreen} />
-              <Stack.Screen name="ArtWork" component={ArtWork} />
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={(
+                  props: NativeStackScreenProps<RootStackParamsList, 'Home'>,
+                ) => ({
+                  // eslint-disable-next-line react/no-unstable-nested-components
+                  headerRight: () => {
+                    return (
+                      <IconButton
+                        size={20}
+                        icon={'heart'}
+                        onPress={() => {
+                          props.navigation.push('Favorites', {});
+                        }}
+                      />
+                    );
+                  },
+                })}
+              />
+              <Stack.Screen name="ArtWork" component={ArtWorkScreen} />
+              <Stack.Screen name="Favorites" component={FavoritesScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </PaperProvider>

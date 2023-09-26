@@ -28,10 +28,12 @@ export type Pagination = {
 };
 
 export type HomeParams = {};
+export type FavoritesParams = {};
 
 export type ArtWorkParams = ArtWork;
 
 export type RootStackParamsList = {
   Home: HomeParams;
   ArtWork: ArtWorkParams;
+  Favorites: FavoritesParams;
 };

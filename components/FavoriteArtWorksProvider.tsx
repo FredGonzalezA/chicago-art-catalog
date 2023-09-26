@@ -19,6 +19,7 @@ export const FavoriteArtWorksProvider: React.FC<React.PropsWithChildren> = ({
   return (
     <FavoriteArtWorksContext.Provider
       value={{
+        favorites,
         isFavorite: id => favorites.has(id),
         toggleFavorite: id => {
           const favoritesArr = [...favorites];

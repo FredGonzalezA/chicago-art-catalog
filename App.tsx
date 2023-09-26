@@ -29,6 +29,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {ScreenProps, RootStackParamsList} from './android/types/global';
+import {ArtItem} from './components/ArtItem';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -83,6 +84,16 @@ const HomeScreen = ({navigation}: ScreenProps) => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <ArtItem
+            item={{
+              title: 'tite',
+              description:
+                '<p>descidescidescidesci descidescidescidescidescidescidescidescidescidescidescidesci</p>',
+              thumbnail: {
+                lqip: 'data:image/gif;base64,R0lGODlhBAAFAPQAABw/Zhg/aBRBaBZBahRCaxxBahxEahNIchZJcR9LdB9OdiZIZSBEbShLbjxRZyBPeipRcSpReUpWaitXgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAEAAUAAAURoMJIDhJAywAcAlEkxhNNTQgAOw==',
+              },
+            }}
+          />
           <Button
             title="Go to Details"
             onPress={() => navigation.navigate('Details')}

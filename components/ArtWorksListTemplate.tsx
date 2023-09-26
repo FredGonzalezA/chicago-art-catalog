@@ -4,8 +4,9 @@ import {ArtItem} from './ArtItem';
 import {DataTable, Surface} from 'react-native-paper';
 import {FullLoading} from './FullLoading';
 import {useNavigation} from '@react-navigation/native';
-import {ArtWork, Pagination, RootStackParamsList} from '../types/global';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+import type {ArtWork, Pagination, RootStackParamsList} from '../types/global';
 
 const ItemSeparator = () => {
   return <View style={styles.itemSeparatorView} />;

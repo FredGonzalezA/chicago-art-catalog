@@ -2,6 +2,7 @@ import camelCase from 'lodash/camelCase';
 import isObject from 'lodash/isObject';
 import transform from 'lodash/transform';
 
+// Convert snake case object keys to camelCase
 export const camelize = <T extends object, K = any>(obj: T): K =>
   transform<T, K>(obj, (acc, value, key, target) => {
     const camelKey = (

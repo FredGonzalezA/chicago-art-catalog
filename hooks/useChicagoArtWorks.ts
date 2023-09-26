@@ -1,8 +1,9 @@
 import React from 'react';
 import {useQuery} from '@tanstack/react-query';
-import {ArtWork, Pagination} from '../types/global';
 import {camelize} from '../utils/objects';
 import sanitizeHtml from 'sanitize-html';
+
+import type {ArtWork, Pagination} from '../types/global';
 
 export const useChicagoArtWorks = ({
   ids,

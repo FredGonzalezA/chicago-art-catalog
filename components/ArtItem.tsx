@@ -1,10 +1,11 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Card} from 'react-native-paper';
-import type {CardProps} from 'react-native-paper';
 import sanitizeHtml from 'sanitize-html';
-import {ArtWork} from '../types/global';
 import {getImageUrl} from '../utils/image';
+
+import type {CardProps} from 'react-native-paper';
+import type {ArtWork} from '../types/global';
 
 export const ArtItem: React.FC<
   {item: ArtWork} & Pick<CardProps, 'onPress'>

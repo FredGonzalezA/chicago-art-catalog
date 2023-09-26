@@ -1,5 +1,6 @@
 import React from 'react';
-import {Pagination} from '../types/global';
+
+import type {Pagination} from '../types/global';
 
 export const usePagination = ({
   page: _page = 1,

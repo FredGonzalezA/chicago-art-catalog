@@ -2,13 +2,14 @@ import React from 'react';
 import {SafeAreaView, View, StyleSheet, StatusBar} from 'react-native';
 import {FullLoading} from '../components/FullLoading';
 import Animated from 'react-native-reanimated';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamsList} from '../types/global';
 import {useChicagoArtWork} from '../hooks/useChicagoArtWork';
 import {getImageUrl} from '../utils/image';
 import {AnimatedFAB, Chip, Text} from 'react-native-paper';
 import {ScrollView} from 'react-native';
 import {useFavoriteArtWorks} from '../hooks/useFavoriteArtWorks';
+
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 const SubTitle: React.FC<{children: string}> = ({children}) => (
   <Text variant="titleLarge" style={styles.subTitle}>

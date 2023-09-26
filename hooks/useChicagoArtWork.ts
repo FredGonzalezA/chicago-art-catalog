@@ -1,8 +1,9 @@
 import React from 'react';
 import {useQuery} from '@tanstack/react-query';
-import {ArtWorkDetails} from '../types/global';
 import {camelize} from '../utils/objects';
 import sanitizeHtml from 'sanitize-html';
+
+import type {ArtWorkDetails} from '../types/global';
 
 export const useChicagoArtWork = (id: string) => {
   const url = React.useMemo(

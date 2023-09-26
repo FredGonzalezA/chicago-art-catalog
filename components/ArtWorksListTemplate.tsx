@@ -20,14 +20,21 @@ export const ArtWorksListTemplate: React.FC<{
   onLimitChange: (limit: number) => void;
   onPageChange: (page: number) => void;
 }> = ({artworks, onLimitChange, onPageChange}) => {
+  const listRef = React.useRef<FlatList<ArtWork>>(null);
   const navigation =
     useNavigation<NativeStackScreenProps<RootStackParamsList>['navigation']>();
+
+  React.useEffect(() => {
+    listRef.current?.scrollToOffset({offset: 0});
+  }, [artworks.data?.pagination.currentPage]);
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.content}>
         {artworks.data && Array.isArray(artworks.data.data) && (
           <>
             <FlatList
+              ref={listRef}
               data={artworks.data.data}
               ItemSeparatorComponent={ItemSeparator}
               renderItem={({item}) => (

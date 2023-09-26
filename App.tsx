@@ -28,11 +28,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {ScreenProps, RootStackParamsList} from './types/global';
+import {RootStackParamsList} from './types/global';
 import {ArtItem} from './components/ArtItem';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
-import {HomeScreen} from './screens';
+import {ArtWork, HomeScreen} from './screens';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -136,7 +136,7 @@ function App(): JSX.Element {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Details" component={DetailsScreen} />
+            <Stack.Screen name="ArtWork" component={ArtWork} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>

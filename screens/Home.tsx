@@ -11,14 +11,19 @@ import {useChicagoArtWorks} from '../hooks/useChicagoArtWorks';
 import {DataTable, Surface} from 'react-native-paper';
 import {usePagination} from '../hooks/usePagination';
 import {FullLoading} from '../components/FullLoading';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamsList} from '../types/global';
 
 const ItemSeparator = () => {
   return <View style={styles.itemSeparatorView} />;
 };
 
-const Home = () => {
+const Home = ({
+  navigation,
+}: NativeStackScreenProps<RootStackParamsList, 'Home'>) => {
   const {page, setPage, limit, setLimit} = usePagination();
   const artworks = useChicagoArtWorks({currentPage: page, limit});
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.content}>
@@ -28,8 +33,15 @@ const Home = () => {
             <FlatList
               data={artworks.data.data}
               ItemSeparatorComponent={ItemSeparator}
-              renderItem={({item}) => <ArtItem item={item} />}
-              keyExtractor={item => item.id}
+              renderItem={({item}) => (
+                <ArtItem
+                  item={item}
+                  onPress={() => {
+                    navigation.push('ArtWork', item);
+                  }}
+                />
+              )}
+              keyExtractor={item => String(item.id)}
               style={styles.artworksList}
               contentContainerStyle={styles.artworksListContainer}
             />
@@ -74,7 +86,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   artworksList: {
-    //padding: 16,
     flex: 1,
   },
   artworksListContainer: {

@@ -1,16 +1,20 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Card} from 'react-native-paper';
+import type {CardProps} from 'react-native-paper';
 import sanitizeHtml from 'sanitize-html';
 import {ArtWork} from '../types/global';
 import {getImageUrl} from '../utils/image';
 
-export const ArtItem: React.FC<{item: ArtWork}> = ({item}) => {
+export const ArtItem: React.FC<
+  {item: ArtWork} & Pick<CardProps, 'onPress'>
+> = ({item, onPress}) => {
   const description = React.useMemo(() => {
     return sanitizeHtml(item.description ?? '', {allowedTags: []});
   }, [item.description]);
+
   return (
-    <Card>
+    <Card onPress={onPress}>
       <Card.Cover
         source={{
           uri: item.imageId ? getImageUrl(item.imageId) : undefined,

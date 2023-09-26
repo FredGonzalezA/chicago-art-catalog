@@ -1,7 +1,6 @@
 import React from 'react';
-import {SafeAreaView, View, StyleSheet, StatusBar} from 'react-native';
+import {SafeAreaView, View, StyleSheet, StatusBar, Image} from 'react-native';
 import {FullLoading} from '../components/FullLoading';
-import Animated from 'react-native-reanimated';
 import {RootStackParamsList} from '../types/global';
 import {useChicagoArtWork} from '../hooks/useChicagoArtWork';
 import {getImageUrl} from '../utils/image';
@@ -69,7 +68,7 @@ const Artwork = ({
 
             setIsExtended(currentScrollPosition <= 0);
           }}>
-          <Animated.Image
+          <Image
             style={styles.image}
             source={{
               uri: route.params.imageId

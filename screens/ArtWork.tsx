@@ -8,6 +8,7 @@ import {useChicagoArtWork} from '../hooks/useChicagoArtWork';
 import {getImageUrl} from '../utils/image';
 import {AnimatedFAB, Chip, Text} from 'react-native-paper';
 import {ScrollView} from 'react-native';
+import {useFavoriteArtWorks} from '../hooks/useFavoriteArtWorks';
 
 const SubTitle: React.FC<{children: string}> = ({children}) => (
   <Text variant="titleLarge" style={styles.subTitle}>
@@ -28,6 +29,8 @@ const Artwork = ({
   const artworkId = String(route.params.id);
   const {data, isFetching} = useChicagoArtWork(artworkId);
   const [isExtended, setIsExtended] = React.useState(true);
+  const {isFavorite: _isFavorite, toggleFavorite} = useFavoriteArtWorks();
+  const isFavorite = _isFavorite(route.params.id);
 
   const artwork = data?.data;
 
@@ -126,10 +129,10 @@ const Artwork = ({
         </ScrollView>
       </View>
       <AnimatedFAB
-        icon={'heart'}
-        label={'Add to favorites'}
+        icon={isFavorite ? 'heart' : 'heart-outline'}
+        label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         extended={isExtended}
-        onPress={() => console.log('Pressed')}
+        onPress={() => toggleFavorite(route.params.id)}
         style={styles.fab}
       />
       <FullLoading show={isFetching} />

@@ -33,6 +33,7 @@ import {ArtItem} from './components/ArtItem';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 import {ArtWork, HomeScreen} from './screens';
+import {FavoriteArtWorksProvider} from './components/FavoriteArtWorksProvider';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -132,14 +133,16 @@ const queryClient = new QueryClient();
 function App(): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
-      <PaperProvider>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="ArtWork" component={ArtWork} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </PaperProvider>
+      <FavoriteArtWorksProvider>
+        <PaperProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="ArtWork" component={ArtWork} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PaperProvider>
+      </FavoriteArtWorksProvider>
     </QueryClientProvider>
   );
 }

@@ -1,6 +1,5 @@
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-export type Base64String = string;
 export type HTMLString = string;
 
 export type HomeParams = {};
@@ -11,10 +10,16 @@ export type RootStackParamsList = {
 
 export type ScreenProps = NativeStackScreenProps<RootStackParamsList, 'Home'>;
 
-export type ArtWork = Partial<{
-  thumbnail: {
-    lqip?: Base64String;
-  };
-  title: string;
+export type ArtWork = {id: string; title: string} & Partial<{
+  imageId: string;
   description: HTMLString;
 }>;
+
+export type Pagination = {
+  currentPage: number;
+  limit: number;
+  nextUrl: string;
+  prevUrl: string;
+  total: number;
+  totalPages: number;
+};

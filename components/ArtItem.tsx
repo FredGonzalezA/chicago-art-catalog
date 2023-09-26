@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 import {Card} from 'react-native-paper';
 import sanitizeHtml from 'sanitize-html';
 import {ArtWork} from '../types/global';
+import {getImageUrl} from '../utils/image';
 
 export const ArtItem: React.FC<{item: ArtWork}> = ({item}) => {
   const description = React.useMemo(() => {
@@ -11,7 +12,9 @@ export const ArtItem: React.FC<{item: ArtWork}> = ({item}) => {
   return (
     <Card>
       <Card.Cover
-        source={{uri: item.thumbnail?.lqip}}
+        source={{
+          uri: item.imageId ? getImageUrl(item.imageId) : undefined,
+        }}
         theme={{
           // Removes border radius at the bottom
           isV3: false,
@@ -24,7 +27,6 @@ export const ArtItem: React.FC<{item: ArtWork}> = ({item}) => {
         subtitle={description}
         subtitleNumberOfLines={2}
       />
-      <Card.Actions>{null}</Card.Actions>
     </Card>
   );
 };
@@ -32,5 +34,6 @@ export const ArtItem: React.FC<{item: ArtWork}> = ({item}) => {
 const styles = StyleSheet.create({
   title: {
     marginTop: 8,
+    marginBottom: 16,
   },
 });
